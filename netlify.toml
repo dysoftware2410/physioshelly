@@ -2,9 +2,9 @@
 
 [build]
   # The whole site lives at the repo root, so publish the root directory.
+  # No build command is set on purpose — this is a plain HTML/CSS/JS site,
+  # so Netlify publishes the folder as-is and still runs form post-processing.
   publish = "."
-  # No build command needed for a plain HTML/CSS/JS site.
-  command = ""
 
 # ---- Security & privacy headers (applied to every response) ----
 [[headers]]
