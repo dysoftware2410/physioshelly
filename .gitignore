@@ -1,0 +1,14 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# Dependency / tooling dirs (not used by this static site, ignored just in case)
+node_modules/
+.cache/
+.netlify/
+
+# Logs
+*.log

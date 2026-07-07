@@ -1,0 +1,40 @@
+# Netlify configuration — Physioshelly (static site, no build step)
+
+[build]
+  # The whole site lives at the repo root, so publish the root directory.
+  publish = "."
+  # No build command needed for a plain HTML/CSS/JS site.
+  command = ""
+
+# ---- Security & privacy headers (applied to every response) ----
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+
+# ---- Long-lived caching for fingerprint-stable static assets ----
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ---- Always revalidate the HTML so content updates go live immediately ----
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ---- Notes ----
+# * HTTPS is provisioned automatically by Netlify once the custom domain
+#   physioshelly.co.il is added in Site settings > Domain management.
+# * www -> apex (or apex -> www) redirects are best configured there too.
+# * 404.html at the site root is served automatically for unknown paths.
