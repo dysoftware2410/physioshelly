@@ -181,10 +181,11 @@
   .skip-link:focus { top: 0; }
   /* Visible keyboard focus everywhere */
   a:focus-visible, button:focus-visible, summary:focus-visible,
-  details:focus-visible, [tabindex]:focus-visible {
+  details:focus-visible, [tabindex]:focus-visible,
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline: 3px solid var(--teal-mid);
     outline-offset: 3px;
-    border-radius: 6px;
+    box-shadow: 0 0 0 5px rgba(126,224,176,.35);
   }
   /* Dark sections need a light focus ring for contrast */
   .hero a:focus-visible, .hero button:focus-visible,
@@ -192,6 +193,7 @@
   footer a:focus-visible, .nav a:focus-visible, .nav button:focus-visible,
   .mobile-menu a:focus-visible, .mobile-menu button:focus-visible {
     outline-color: #a7e3c1;
+    box-shadow: 0 0 0 5px rgba(167,227,193,.32);
   }
   .sr-only {
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -268,9 +270,9 @@
   .logo-text { font-weight: 900; font-size: 1.25rem; color: var(--teal-deep); line-height: 1.05; }
   .logo-text small { display: block; font-weight: 400; font-size: .58rem; color: var(--gray); letter-spacing: .14em; }
   .nav-links { display: flex; gap: 24px; list-style: none; }
-  .nav-links a { text-decoration: none; color: var(--ink); font-weight: 600; font-size: .93rem; position: relative; }
+  .nav-links a { text-decoration: none; color: var(--ink); font-weight: 600; font-size: .93rem; position: relative; padding: 9px 2px; }
   .nav-links a::after {
-    content: ""; position: absolute; bottom: -5px; right: 0; width: 0; height: 2px;
+    content: ""; position: absolute; bottom: 3px; right: 0; width: 0; height: 2px;
     border-radius: 2px; background: var(--teal-mid); transition: width .3s;
   }
   .nav-links a:hover::after { width: 100%; }
@@ -627,7 +629,7 @@
   .divider-labels li {
     display: inline-flex; align-items: center;
     font-weight: 600; font-size: clamp(.84rem, 1.1vw, .96rem); letter-spacing: .06em;
-    color: var(--teal-deep); opacity: .72; transition: opacity .4s var(--ease-out);
+    color: var(--teal-deep); opacity: .82; transition: opacity .4s var(--ease-out);
   }
   .divider-labels li::before { content: "\2726"; color: var(--sage); margin-inline-end: 10px; font-size: .74em; opacity: .7; }
   .divider-labels:hover li { opacity: .4; }
@@ -637,7 +639,7 @@
   .sec-head.center { text-align: center; margin: 0 auto 56px; }
   .sec-tag {
     display: inline-block; font-weight: 800; font-size: .8rem; letter-spacing: .1em;
-    color: var(--teal-mid);
+    color: var(--teal);
     background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.85);
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 2px 10px rgba(20,84,78,.07);
@@ -825,13 +827,13 @@
   .partner-card:hover .partner-photo { transform: scale(1.04) rotate(1.5deg); }
   .partner-photo img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
   .partner-card h4 { font-size: 1.3rem; font-weight: 900; line-height: 1.3; }
-  .partner-card .partner-role { color: var(--teal-mid); font-size: .9rem; font-weight: 700; margin-bottom: 12px; }
+  .partner-card .partner-role { color: var(--teal); font-size: .9rem; font-weight: 700; margin-bottom: 12px; }
   .partner-card .partner-bio { color: var(--gray); font-size: .95rem; margin-bottom: 18px; }
   .partner-ig {
-    display: inline-flex; align-items: center; gap: 8px; margin-top: auto;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: auto;
     font-weight: 700; font-size: .9rem; color: var(--teal-deep); text-decoration: none;
     background: var(--sage-bg); border: 1px solid var(--sage-soft);
-    padding: 8px 18px; border-radius: 999px;
+    padding: 11px 20px; min-height: 44px; border-radius: 999px;
     transition: transform .25s, box-shadow .25s;
   }
   .partner-ig:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(20,84,78,.15); }
@@ -871,7 +873,7 @@
     display: flex; align-items: center; justify-content: center;
   }
   .insoles-cta { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
-  .insoles-link { font-weight: 700; font-size: .96rem; color: var(--teal-deep); text-decoration: none; border-bottom: 1.5px solid var(--sage-soft); padding-bottom: 2px; transition: color .25s ease, border-color .25s ease; }
+  .insoles-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; font-size: .96rem; color: var(--teal-deep); text-decoration: none; border-bottom: 1.5px solid var(--sage-soft); padding: 6px 2px; transition: color .25s ease, border-color .25s ease; }
   .insoles-link:hover { color: var(--teal-mid); border-color: var(--teal-mid); }
   .insoles-note { margin-top: 18px; font-size: .88rem; color: var(--gray); display: inline-flex; align-items: center; gap: 8px; }
   .insoles-note .ic { width: 16px; height: 16px; color: var(--teal-mid); flex-shrink: 0; }
@@ -1090,7 +1092,7 @@
   footer a { color: #cfe0d6; text-decoration: none; transition: color .25s ease; }
   footer a:hover { color: #fff; }
   .footer-contact { display: flex; flex-direction: column; gap: 12px; }
-  .footer-contact a { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: .98rem; }
+  .footer-contact a { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: .98rem; min-height: 44px; padding: 4px 0; }
   .footer-contact .ic { width: 17px; height: 17px; color: var(--sage); flex-shrink: 0; }
   .footer-social { display: flex; gap: 10px; }
   .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding-top: 22px; text-align: center; }
@@ -1127,6 +1129,8 @@
   .field.full { grid-column: 1 / -1; }
   .field label { font-weight: 700; font-size: .95rem; color: var(--teal-deep); }
   .field label .req { color: #c0453b; margin-right: 2px; }
+  .contact-form .form-note { grid-column: 1 / -1; margin: -6px 0 0; font-size: .9rem; color: var(--gray); }
+  .contact-form .form-note .req { color: #c0453b; }
   .field input, .field select {
     font-family: inherit; font-size: 1rem; color: var(--ink);
     padding: 13px 16px; border-radius: 14px;
@@ -1139,10 +1143,13 @@
     background-repeat: no-repeat; background-position: left 16px center; padding-left: 42px;
   }
   .field input:focus, .field select:focus {
-    outline: none; border-color: var(--teal-mid);
-    box-shadow: 0 0 0 4px rgba(43,138,128,.15);
+    border-color: var(--teal-mid);
+    box-shadow: 0 0 0 4px rgba(43,138,128,.18);
   }
-  .field input:focus-visible, .field select:focus-visible { outline: none; }
+  .field input:focus-visible, .field select:focus-visible {
+    outline: 3px solid var(--teal-mid); outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(126,224,176,.35);
+  }
   .contact-form .btn-submit {
     grid-column: 1 / -1; justify-content: center; width: 100%;
     background: var(--teal-deep); color: #fff; font-size: 1.05rem; padding: 16px;
@@ -1266,6 +1273,11 @@
     .about-quote { font-size: .9rem; padding: 15px 18px; }
   }
 
+  /* Body copy stays >=16px on phones for readability */
+  @media (max-width: 600px) {
+    .about p, .bento-card p, .partner-bio, .faq details p, .steps p { font-size: 1rem; line-height: 1.75; }
+  }
+
   /* Very small / older devices */
   @media (max-width: 360px) {
     .stat-card strong { font-size: 1.25rem; }
@@ -1324,7 +1336,7 @@
 </header>
 
 <!-- ======= Mobile menu drawer ======= -->
-<div class="mobile-menu" id="mobile-menu" hidden>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="תפריט ניווט" hidden>
   <div class="mobile-menu-backdrop" data-close-menu></div>
   <nav class="mobile-menu-panel" aria-label="ניווט נייד">
     <button class="mobile-menu-close" data-close-menu aria-label="סגירת תפריט">&times;</button>
@@ -1343,7 +1355,7 @@
 <main id="main">
 
 <!-- ======= HERO ======= -->
-<section class="hero" style="padding-bottom:0;">
+<section class="hero" aria-labelledby="hero-h1" style="padding-bottom:0;">
   <div class="hero-bg" data-parallax="0.45">
     <div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div>
     <div class="hero-glow"></div>
@@ -1354,7 +1366,7 @@
   <div class="hero-inner">
     <div data-parallax="-0.22" data-fade="1">
       <span class="eyebrow"><span class="dot"></span>שלי הלל · פיזיותרפיסטית מוסמכת</span>
-      <h1>מכאב לתפקוד בדרך הבטוחה</h1>
+      <h1 id="hero-h1">מכאב לתפקוד בדרך הבטוחה</h1>
       <div class="h1-sub">פיזיותרפיה מקצועית בגישה <span class="rotator"><span class="word" id="rotator-word">אישית</span></span></div>
       <p class="lead">אבחון מדויק, תוכנית ברורה וליווי צמוד</p>
     </div>
@@ -1411,14 +1423,14 @@
 </div>
 
 <!-- ======= Services — Bento ======= -->
-<section id="services" style="overflow:hidden;">
+<section id="services" aria-labelledby="services-h" style="overflow:hidden;">
   <div class="orb orb-sage" style="width:520px;height:520px;top:-120px;left:-140px;"></div>
   <div class="orb orb-teal" style="width:420px;height:420px;bottom:-100px;right:-120px;animation-delay:-6s;opacity:.35;"></div>
   <div class="orb orb-mint" style="width:300px;height:300px;top:40%;left:35%;animation-delay:-11s;opacity:.3;"></div>
   <div class="container">
     <div class="sec-head reveal">
       <span class="sec-tag">הטיפולים</span>
-      <h2>במה אני יכולה <span>לעזור לכם?</span></h2>
+      <h2 id="services-h">במה אני יכולה <span>לעזור לכם?</span></h2>
       <p>כל טיפול נבנה סביבכם — מהכאב הראשון ועד החזרה המלאה לשגרה.</p>
     </div>
     <div class="bento">
@@ -1480,7 +1492,7 @@
 </section>
 
 <!-- ======= About ======= -->
-<section class="about" id="about" style="overflow:hidden;">
+<section class="about" id="about" aria-labelledby="about-h" style="overflow:hidden;">
   <div class="orb orb-teal" style="width:460px;height:460px;top:-80px;right:-160px;opacity:.3;"></div>
   <div class="orb orb-sage" style="width:520px;height:520px;bottom:-140px;left:-120px;animation-delay:-8s;"></div>
   <div class="container about-grid">
@@ -1496,7 +1508,7 @@
     </div>
     <div class="reveal">
       <span class="sec-tag">נעים להכיר</span>
-      <h2>שלי הלל | הדרך שלכם לחזור לתפקוד</h2>
+      <h2 id="about-h">שלי הלל | הדרך שלכם לחזור לתפקוד</h2>
       <ul class="about-creds" aria-label="הסמכות וניסיון">
         <li><svg class="ic"><use href="#ic-award"/></svg>B.P.T · פיזיותרפיסטית מוסמכת</li>
         <li><svg class="ic"><use href="#ic-activity"/></svg>עשר שנות ניסיון בקליניקה הפרטית</li>
@@ -1521,7 +1533,7 @@
       <p>פיזיושלי פועלת בשיתוף פעולה עם שתי פיזיותרפיסטיות מנוסות, כדי שתמיד תקבלו את הטיפול המתאים ביותר.</p>
     </div>
     <div class="partners-grid">
-      <div class="partner-card reveal d1">
+      <article class="partner-card reveal d1">
         <div class="partner-photo">
           <span>פ</span>
           <img src="assets/pnina.jpeg" alt="פנינה מוסקוביץ" style="object-position: center 25%;" onerror="this.remove()">
@@ -1530,8 +1542,8 @@
         <div class="partner-role">פיזיותרפיסטית · ניסיון של 32 שנים</div>
         <p class="partner-bio">עוסקת בבריאות האישה, התמחות ברצפת אגן נשים, ילדים וטיפולים למפרק הלסת. טיפולים פרטניים, העברת הרצאות וסדנאות בתחום בריאות האישה בכלל ורצפת האגן בפרט.</p>
         <a class="partner-ig" href="https://www.instagram.com/pnina_moskovich_physio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ic-ig"/></svg>לאינסטגרם של פנינה</a>
-      </div>
-      <div class="partner-card reveal d2">
+      </article>
+      <article class="partner-card reveal d2">
         <div class="partner-photo">
           <span>א</span>
           <img src="assets/orit.jpeg" alt="אורית גיטניקוב" onerror="this.remove()">
@@ -1540,13 +1552,13 @@
         <div class="partner-role">פיזיותרפיסטית (B.P.T)</div>
         <p class="partner-bio">אני מאמינה שכל טיפול מתחיל בהקשבה, באבחון מדויק ובהבנת המטרה של המטופל. עוסקת בשיקום אורתופדי, טיפול בסחרחורות ובעיות שיווי משקל, שיקום לאחר ניתוחים וטיפול במבוגרים — מתוך מטרה להחזיר כל מטופל לתפקוד ולאיכות חיים טובה יותר.</p>
         <a class="partner-ig" href="https://www.instagram.com/orit_gitnikov" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ic-ig"/></svg>לאינסטגרם של אורית</a>
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- ======= Insoles — Actics Medical ======= -->
-<section class="insoles" id="insoles" style="overflow:hidden;">
+<section class="insoles" id="insoles" aria-labelledby="insoles-h" style="overflow:hidden;">
   <div class="orb orb-sage" style="width:480px;height:480px;top:-100px;right:-140px;opacity:.28;"></div>
   <div class="orb orb-mint" style="width:340px;height:340px;bottom:-120px;left:-90px;animation-delay:-7s;opacity:.3;"></div>
   <div class="container insoles-grid">
@@ -1560,7 +1572,7 @@
     </div>
     <div class="reveal">
       <span class="sec-tag">אקטיקס מדיקל</span>
-      <h2>מדרסים בהתאמה אישית <span>לכף הרגל</span></h2>
+      <h2 id="insoles-h">מדרסים בהתאמה אישית <span>לכף הרגל</span></h2>
       <p class="insoles-lead">בקליניקה מתאימים מדרסי אקטיקס מדיקל בהתאמה אישית מלאה — מדרסים אורתופדיים בטכנולוגיה מתקדמת ומוגנת פטנט, המפזרים את העומס בצורה מדויקת ומחזירים אתכם לתנועה נטולת כאב.</p>
       <ul class="feature-list">
         <li>טכנולוגיה מוגנת פטנט עם עד 52 נקודות כיוונון להתאמה מדויקת.</li>
@@ -1578,13 +1590,13 @@
 </section>
 
 <!-- ======= Steps ======= -->
-<section class="steps" id="steps">
+<section class="steps" id="steps" aria-labelledby="steps-h">
   <div class="orb orb-teal" style="width:500px;height:500px;top:-140px;left:-120px;opacity:.4;"></div>
   <div class="orb orb-sage" style="width:400px;height:400px;bottom:-120px;right:-100px;animation-delay:-7s;opacity:.25;"></div>
   <div class="container">
     <div class="sec-head center reveal">
       <span class="sec-tag">התהליך</span>
-      <h2>איך זה עובד?</h2>
+      <h2 id="steps-h">איך זה עובד?</h2>
       <p>שלושה צעדים פשוטים בדרך חזרה לתנועה חופשית.</p>
     </div>
     <div class="steps-grid reveal">
@@ -1614,13 +1626,13 @@
 </section>
 
 <!-- ======= Testimonials ======= -->
-<section class="tst" id="testimonials">
+<section class="tst" id="testimonials" aria-labelledby="tst-h">
   <div class="orb orb-sage" style="width:480px;height:480px;top:10%;right:-140px;"></div>
   <div class="orb orb-mint" style="width:380px;height:380px;bottom:-80px;left:-100px;animation-delay:-9s;opacity:.35;"></div>
   <div class="container">
     <div class="sec-head center reveal">
       <span class="sec-tag">המלצות</span>
-      <h2>מטופלים <span>מספרים</span></h2>
+      <h2 id="tst-h">מטופלים <span>מספרים</span></h2>
       <p>הודעות אמיתיות ממטופלים — לחצו על תמונה כדי להגדיל ולקרוא.</p>
     </div>
     <div class="tst-layout" id="tst-grid">
@@ -1658,17 +1670,17 @@
 </section>
 
 <!-- Lightbox -->
-<div class="lightbox" id="lightbox" hidden>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="תצוגת הודעת מטופל" hidden>
   <button class="lightbox-close" id="lightbox-close" aria-label="סגירה">&times;</button>
   <img id="lightbox-img" src="" alt="">
 </div>
 
 <!-- ======= Instagram band ======= -->
-<section class="ig-wrap">
+<section class="ig-wrap" aria-labelledby="ig-h">
   <div class="container">
     <div class="ig-band reveal-scale">
       <div class="ig-inner">
-        <h2>בואו לראות איך זה נראה מבפנים</h2>
+        <h2 id="ig-h">בואו לראות איך זה נראה מבפנים</h2>
         <p>טיפים, תרגילים והצצה לקליניקה — באינסטגרם של שלי</p>
         <a class="btn btn-ig" href="https://www.instagram.com/shelly__physiotherapy/" target="_blank"><svg><use href="#ic-ig"/></svg>@shelly__physiotherapy</a>
       </div>
@@ -1677,13 +1689,13 @@
 </section>
 
 <!-- ======= FAQ ======= -->
-<section class="faq" id="faq" style="padding-top:0; overflow:hidden;">
+<section class="faq" id="faq" aria-labelledby="faq-h" style="padding-top:0; overflow:hidden;">
   <div class="orb orb-teal" style="width:420px;height:420px;top:20%;left:-140px;opacity:.3;"></div>
   <div class="orb orb-sage" style="width:380px;height:380px;bottom:-60px;right:-120px;animation-delay:-5s;"></div>
   <div class="container" style="max-width:780px;">
     <div class="sec-head center reveal">
       <span class="sec-tag">שאלות ותשובות</span>
-      <h2>שאלות <span>נפוצות</span></h2>
+      <h2 id="faq-h">שאלות <span>נפוצות</span></h2>
     </div>
     <details class="reveal">
       <summary>כמה זמן נמשך כל טיפול?</summary>
@@ -1705,13 +1717,13 @@
 </section>
 
 <!-- ======= Contact form (Netlify) ======= -->
-<section class="contact" id="contact">
+<section class="contact" id="contact" aria-labelledby="contact-h">
   <div class="aurora a1" style="width:520px;height:520px;top:-160px;right:-120px;background:#2b8a80;"></div>
   <div class="aurora a2" style="width:420px;height:420px;bottom:-140px;left:-100px;background:#9dbfa6;animation-delay:-6s;opacity:.4;"></div>
   <div class="container">
     <div class="sec-head center reveal">
       <span class="sec-tag">צרו קשר</span>
-      <h2>הכאב לא יעבור מעצמו — <span>בואו נטפל בו יחד</span></h2>
+      <h2 id="contact-h">הכאב לא יעבור מעצמו — <span>בואו נטפל בו יחד</span></h2>
       <p>השאירו פרטים ואחזור אליכם לתיאום הצעד הראשון בדרך חזרה לתנועה.</p>
     </div>
     <div class="contact-card reveal-scale">
@@ -1720,6 +1732,7 @@
         <p class="form-hp" aria-hidden="true">
           <label>אל תמלאו שדה זה: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
         </p>
+        <p class="form-note">כל השדות הם שדות חובה (<span class="req" aria-hidden="true">*</span>).</p>
 
         <div class="field full">
           <label for="cf-treatment">סוג הטיפול <span class="req" aria-hidden="true">*</span></label>
@@ -1790,13 +1803,15 @@
   const words = ['אישית', 'מדויקת', 'אנושית'];
   let wi = 0;
   const rotEl = document.getElementById('rotator-word');
-  setInterval(() => {
-    wi = (wi + 1) % words.length;
-    rotEl.style.animation = 'none';
-    void rotEl.offsetWidth; // restart animation
-    rotEl.textContent = words[wi];
-    rotEl.style.animation = '';
-  }, 2600);
+  if (rotEl && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(() => {
+      wi = (wi + 1) % words.length;
+      rotEl.style.animation = 'none';
+      void rotEl.offsetWidth; // restart animation
+      rotEl.textContent = words[wi];
+      rotEl.style.animation = '';
+    }, 2600);
+  }
 
   // ---- Testimonial lightbox ----
   const lb = document.getElementById('lightbox');
@@ -1893,8 +1908,12 @@
   const counterIO = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      const el = e.target, target = +el.dataset.target, dur = 1900, t0 = performance.now();
+      const el = e.target, target = +el.dataset.target;
       const card = el.closest('.stat-card'); if (card) card.classList.add('visible');
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        el.textContent = target.toLocaleString(); counterIO.unobserve(el); return;
+      }
+      const dur = 1900, t0 = performance.now();
       (function tick(t) {
         const p = Math.min((t - t0) / dur, 1);
         const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
@@ -1947,8 +1966,25 @@
 
   // ---- A11y: hide decorative icons, label star ratings ----
   document.querySelectorAll('svg').forEach(s => {
+    s.setAttribute('focusable', 'false');
     if (!s.hasAttribute('aria-label') && !s.hasAttribute('role')) s.setAttribute('aria-hidden', 'true');
   });
+
+  // ---- aria-current: flag the nav link whose section is in view ----
+  const spyLinks = document.querySelectorAll('.nav-links a[href^="#"], .mobile-menu-panel ul a[href^="#"]');
+  const linksById = {};
+  spyLinks.forEach(a => { const id = a.getAttribute('href').slice(1); if (!linksById[id]) linksById[id] = []; linksById[id].push(a); });
+  const spySections = Object.keys(linksById).map(id => document.getElementById(id)).filter(Boolean);
+  if (spySections.length) {
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        spyLinks.forEach(a => a.removeAttribute('aria-current'));
+        (linksById[e.target.id] || []).forEach(a => a.setAttribute('aria-current', 'true'));
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    spySections.forEach(s => spy.observe(s));
+  }
   document.querySelectorAll('.stars').forEach(s => {
     s.setAttribute('role', 'img');
     s.setAttribute('aria-label', 'דירוג 5 מתוך 5 כוכבים');
