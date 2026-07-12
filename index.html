@@ -338,6 +338,7 @@
   .mobile-menu.open .mobile-menu-panel ul li:nth-child(3) a { transition-delay: .22s; }
   .mobile-menu.open .mobile-menu-panel ul li:nth-child(4) a { transition-delay: .28s; }
   .mobile-menu.open .mobile-menu-panel ul li:nth-child(5) a { transition-delay: .34s; }
+  .mobile-menu.open .mobile-menu-panel ul li:nth-child(6) a { transition-delay: .40s; }
   .mobile-menu-panel ul a:hover, .mobile-menu-panel ul a:focus-visible { color: var(--teal-mid); }
   .mobile-menu-panel .btn-whatsapp { justify-content: center; }
   .mobile-menu-close {
@@ -596,19 +597,41 @@
   }
   @keyframes wheel { 0% { opacity: 1; transform: translateX(50%) translateY(0); } 100% { opacity: 0; transform: translateX(50%) translateY(12px); } }
 
-  /* ================= Marquee ================= */
-  .marquee {
-    background: var(--ink); color: var(--sage-soft);
-    padding: 18px 0; overflow: hidden; white-space: nowrap;
-    transform: rotate(-1.2deg) scale(1.03); margin: -14px 0 0;
-    position: relative; z-index: 3;
-    border-top: 1px solid rgba(157,191,166,.3); border-bottom: 1px solid rgba(157,191,166,.3);
+  /* ================= Signature Motion Divider (Hero -> Treatments) ================= */
+  .divider {
+    position: relative; width: 100%; overflow: hidden;
+    padding: clamp(22px, 3vw, 40px) 24px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: clamp(14px, 2vw, 22px);
   }
-  .marquee-track { display: inline-flex; gap: 0; animation: marquee 26s linear infinite; }
-  .marquee span { font-weight: 800; font-size: 1.05rem; padding: 0 18px; letter-spacing: .02em; }
-  .marquee .sep { color: var(--sage); }
-  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(50%); } }
-
+  .divider-line {
+    display: block; width: min(100%, 1040px); height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(157,191,166,.5), transparent);
+  }
+  .divider-row { display: flex; align-items: center; justify-content: center; gap: clamp(16px, 3.5vw, 44px); }
+  /* small one-line figures flanking the words */
+  .sig-side { position: relative; flex-shrink: 0; width: clamp(42px, 5.2vw, 56px); height: clamp(42px, 5.2vw, 56px); }
+  .sig-side img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0;
+    animation: sigCross 14s var(--ease-out) infinite;
+  }
+  .sig-side img:first-child { opacity: 1; }
+  .sig-side img:nth-child(2) { animation-delay: 7s; }
+  @keyframes sigCross {
+    0% { opacity: 0; clip-path: inset(0 0 100% 0); }
+    6% { opacity: 1; }
+    22%, 44% { opacity: 1; clip-path: inset(0 0 0 0); }
+    50%, 100% { opacity: 0; clip-path: inset(0 0 0 0); }
+  }
+  .divider-labels { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(14px, 3vw, 40px); }
+  .divider-labels li {
+    display: inline-flex; align-items: center;
+    font-weight: 600; font-size: clamp(.84rem, 1.1vw, .96rem); letter-spacing: .06em;
+    color: var(--teal-deep); opacity: .72; transition: opacity .4s var(--ease-out);
+  }
+  .divider-labels li::before { content: "\2726"; color: var(--sage); margin-inline-end: 10px; font-size: .74em; opacity: .7; }
+  .divider-labels:hover li { opacity: .4; }
+  .divider-labels li:hover { opacity: 1; }
   /* ================= Section head ================= */
   .sec-head { max-width: 46rem; margin: 0 0 56px; }
   .sec-head.center { text-align: center; margin: 0 auto 56px; }
@@ -813,6 +836,46 @@
   }
   .partner-ig:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(20,84,78,.15); }
   .partner-ig svg { width: 17px; height: 17px; color: var(--ig2); }
+
+  /* ================= Insoles — Actics Medical ================= */
+  .insoles { background: var(--white); overflow: hidden; }
+  .insoles-grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 60px; align-items: center; }
+  .insoles-visual { position: relative; display: flex; flex-direction: column; gap: 18px; }
+  .insole-shot {
+    position: relative; margin: 0; overflow: hidden; border-radius: 26px;
+    background: linear-gradient(150deg, var(--sage), var(--teal-mid));
+    box-shadow: 0 1px 2px rgba(20,84,78,.05), 0 12px 30px rgba(20,84,78,.09);
+  }
+  .insole-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .insole-shot-main { aspect-ratio: 16 / 10; }
+  .insole-shot-sub { aspect-ratio: 21 / 9; }
+  .insole-shot.is-empty::after { content: ""; position: absolute; inset: 0; background: radial-gradient(360px 220px at 70% 20%, rgba(255,255,255,.32), transparent 60%); }
+  .insole-badge {
+    position: absolute; top: 16px; right: 16px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(255,255,255,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border); border-radius: 999px; padding: 8px 15px;
+    font-weight: 800; font-size: .82rem; color: var(--teal-deep);
+    box-shadow: var(--shadow-soft);
+  }
+  .insole-badge .ic { width: 15px; height: 15px; color: var(--teal-mid); }
+  .insoles h2 { font-size: clamp(1.5rem, 2.9vw, 2.1rem); font-weight: 900; letter-spacing: -.015em; margin-bottom: 16px; }
+  .insoles h2 span { color: var(--teal-mid); }
+  .insoles-lead { font-size: 1.1rem; line-height: 1.7; color: var(--ink); font-weight: 600; margin-bottom: 20px; }
+  .feature-list { list-style: none; margin: 6px 0 24px; display: grid; gap: 11px; }
+  .feature-list li { padding-right: 34px; position: relative; font-weight: 600; font-size: .95rem; color: var(--ink); line-height: 1.6; }
+  .feature-list li::before {
+    content: "\2713"; position: absolute; right: 0; top: 2px;
+    width: 23px; height: 23px; border-radius: 50%;
+    background: var(--teal-deep); color: #fff; font-size: .75rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .insoles-cta { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .insoles-link { font-weight: 700; font-size: .96rem; color: var(--teal-deep); text-decoration: none; border-bottom: 1.5px solid var(--sage-soft); padding-bottom: 2px; transition: color .25s ease, border-color .25s ease; }
+  .insoles-link:hover { color: var(--teal-mid); border-color: var(--teal-mid); }
+  .insoles-note { margin-top: 18px; font-size: .88rem; color: var(--gray); display: inline-flex; align-items: center; gap: 8px; }
+  .insoles-note .ic { width: 16px; height: 16px; color: var(--teal-mid); flex-shrink: 0; }
+  @media (max-width: 920px) { .insoles-grid { grid-template-columns: 1fr; gap: 36px; } }
 
   /* ================= Steps — timeline ================= */
   .steps { background: var(--ink); color: #fff; overflow: hidden; padding: 112px 0; }
@@ -1182,7 +1245,7 @@
     .hero-stats { margin-top: 32px; padding-bottom: 40px; gap: 10px; }
     .stat-card { padding: 14px 12px 12px; }
     .stat-card strong { font-size: 1.85rem; }
-    .marquee span { font-size: .92rem; padding: 0 12px; }
+    .divider { padding: 26px 16px; }
     .sec-head h2 { font-size: 1.7rem; }
     .bento-card { padding: 28px 22px; }
     .b-main h3 { font-size: 1.5rem; }
@@ -1236,6 +1299,7 @@
     <ul class="nav-links" id="primary-nav">
       <li><a href="#services">טיפולים</a></li>
       <li><a href="#about">אודות</a></li>
+      <li><a href="#insoles">מדרסים</a></li>
       <li><a href="#steps">איך זה עובד</a></li>
       <li><a href="#faq">שאלות נפוצות</a></li>
       <li><a href="#contact">צרו קשר</a></li>
@@ -1257,6 +1321,7 @@
     <ul>
       <li><a href="#services" data-close-menu>טיפולים</a></li>
       <li><a href="#about" data-close-menu>אודות</a></li>
+      <li><a href="#insoles" data-close-menu>מדרסים</a></li>
       <li><a href="#steps" data-close-menu>איך זה עובד</a></li>
       <li><a href="#faq" data-close-menu>שאלות נפוצות</a></li>
       <li><a href="#contact" data-close-menu>צרו קשר</a></li>
@@ -1313,16 +1378,26 @@
   <div class="scroll-hint"><div class="mouse"></div>גללו</div>
 </section>
 
-<!-- ======= Marquee ======= -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marquee-track">
-    <span>פיזיותרפיה</span><span class="sep">✦</span>
-    <span>אוסטאופתיה</span><span class="sep">✦</span>
-    <span>מדרסים בהתאמה אישית</span><span class="sep">✦</span>
-    <span>פציעות ספורט</span><span class="sep">✦</span>
-    <span>טיפול בורטיגו</span><span class="sep">✦</span>
-    <span>רצפת אגן נשים</span><span class="sep">✦</span>
+<!-- ======= Signature Motion Divider (Hero → Treatments) ======= -->
+<div class="divider">
+  <span class="divider-line" aria-hidden="true"></span>
+  <div class="divider-row">
+    <span class="sig-side" aria-hidden="true">
+      <img src="assets/motion-spine.svg" alt="" loading="lazy">
+      <img src="assets/motion-running.svg" alt="" loading="lazy">
+    </span>
+    <ul class="divider-labels">
+      <li>פיזיותרפיה</li>
+      <li>אוסטאופתיה</li>
+      <li>שיקום ספורט</li>
+      <li>מדרסים בהתאמה אישית</li>
+    </ul>
+    <span class="sig-side" aria-hidden="true">
+      <img src="assets/motion-stretch.svg" alt="" loading="lazy">
+      <img src="assets/motion-ankle.svg" alt="" loading="lazy">
+    </span>
   </div>
+  <span class="divider-line" aria-hidden="true"></span>
 </div>
 
 <!-- ======= Services — Bento ======= -->
@@ -1401,19 +1476,13 @@
   <div class="container about-grid">
     <div class="about-visual reveal-scale">
       <div class="about-portrait-wrap">
-        <!-- Reserved for Shelly's professional portrait — drop assets/shelly-portrait.jpg -->
         <figure class="about-portrait">
-          <img src="assets/shelly-portrait.jpg" alt="שלי הלל רוזנשטט — פיזיותרפיסטית מוסמכת" loading="lazy"
+          <img src="assets/Shelly.png" alt="שלי הלל רוזנשטט — פיזיותרפיסטית מוסמכת" loading="lazy"
                onerror="this.closest('.about-portrait').classList.add('is-empty'); this.remove();">
           <figcaption>שלי הלל רוזנשטט<small>פיזיותרפיסטית מוסמכת · B.P.T</small></figcaption>
         </figure>
         <div class="about-quote">"כל גוף הוא סיפור אחר — ואני כאן כדי להקשיב לו"</div>
       </div>
-      <!-- Reserved for a treatment / clinic photo — drop assets/clinic-1.jpg -->
-      <figure class="about-clinic" aria-hidden="true">
-        <img src="assets/clinic-1.jpg" alt="" loading="lazy"
-             onerror="this.closest('.about-clinic').classList.add('is-empty'); this.remove();">
-      </figure>
     </div>
     <div class="reveal">
       <span class="sec-tag">נעים להכיר</span>
@@ -1460,6 +1529,38 @@
         <div class="partner-role">פיזיותרפיסטית (B.P.T)</div>
         <p class="partner-bio">אני מאמינה שכל טיפול מתחיל בהקשבה, באבחון מדויק ובהבנת המטרה של המטופל. עוסקת בשיקום אורתופדי, טיפול בסחרחורות ובעיות שיווי משקל, שיקום לאחר ניתוחים וטיפול במבוגרים — מתוך מטרה להחזיר כל מטופל לתפקוד ולאיכות חיים טובה יותר.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= Insoles — Actics Medical ======= -->
+<section class="insoles" id="insoles" style="overflow:hidden;">
+  <div class="orb orb-sage" style="width:480px;height:480px;top:-100px;right:-140px;opacity:.28;"></div>
+  <div class="orb orb-mint" style="width:340px;height:340px;bottom:-120px;left:-90px;animation-delay:-7s;opacity:.3;"></div>
+  <div class="container insoles-grid">
+    <div class="insoles-visual reveal-scale">
+      <!-- Product photo (Actics Medical) — falls back to a branded frame if unavailable -->
+      <figure class="insole-shot insole-shot-main">
+        <span class="insole-badge"><svg class="ic"><use href="#ic-award"/></svg>טכנולוגיה מוגנת פטנט</span>
+        <img src="https://static.wixstatic.com/media/8bde31_b50e803667054652a6ca96326e4af5d4~mv2.png/v1/fill/w_1200,h_750,al_c,q_90/actics-insole.png" alt="מדרסי אקטיקס מדיקל בהתאמה אישית לכף הרגל" loading="lazy"
+             onerror="this.closest('.insole-shot').classList.add('is-empty'); this.remove();">
+      </figure>
+    </div>
+    <div class="reveal">
+      <span class="sec-tag">אקטיקס מדיקל</span>
+      <h2>מדרסים בהתאמה אישית <span>לכף הרגל</span></h2>
+      <p class="insoles-lead">בקליניקה מתאימים מדרסי אקטיקס מדיקל בהתאמה אישית מלאה — מדרסים אורתופדיים בטכנולוגיה מתקדמת ומוגנת פטנט, המפזרים את העומס בצורה מדויקת ומחזירים אתכם לתנועה נטולת כאב.</p>
+      <ul class="feature-list">
+        <li>טכנולוגיה מוגנת פטנט עם עד 52 נקודות כיוונון להתאמה מדויקת.</li>
+        <li>פיזור עומסים אופטימלי — הקלה על כפות הרגליים, הברכיים, הירכיים והגב התחתון.</li>
+        <li>התאמה אישית במקום, כבר בביקור הראשון — מהיר, פשוט ויעיל.</li>
+        <li>ניתן להעביר את המדרס בקלות בין זוגות נעליים דומות.</li>
+        <li>מתאים לסוכרתיים, לספורטאים ולטיפול בדורבן — בחומרים מתקדמים ומומלצים.</li>
+      </ul>
+      <div class="insoles-cta">
+        <a class="btn btn-whatsapp" href="https://wa.me/972507767001?text=%D7%94%D7%99%D7%99%20%D7%A9%D7%9C%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%94%D7%AA%D7%90%D7%9E%D7%AA%20%D7%9E%D7%93%D7%A8%D7%A1%D7%99%D7%9D" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ic-wa"/></svg>לתיאום התאמת מדרסים</a>
+      </div>
+      <p class="insoles-note"><svg class="ic" aria-hidden="true"><use href="#ic-award"/></svg>הטכנולוגיה הוצגה בפני איגוד המדרסנים האמריקאי וזכתה להתרשמות רבה.</p>
     </div>
   </div>
 </section>
@@ -1684,17 +1785,6 @@
     rotEl.textContent = words[wi];
     rotEl.style.animation = '';
   }, 2600);
-
-  // ---- Duplicate marquee track for seamless loop ----
-  ['marquee-track'].forEach(id => {
-    const t = document.getElementById(id);
-    if (!t) return;
-    const clone = t.cloneNode(true);
-    clone.removeAttribute('id');
-    clone.setAttribute('aria-hidden', 'true');
-    Array.from(clone.children).forEach(c => { c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1; });
-    while (clone.firstChild) t.appendChild(clone.firstChild);
-  });
 
   // ---- Testimonial lightbox ----
   const lb = document.getElementById('lightbox');
