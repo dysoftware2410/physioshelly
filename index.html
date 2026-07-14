@@ -107,7 +107,7 @@
     {
       "@type": "Question",
       "name": "כמה זמן נמשך כל טיפול?",
-      "acceptedAnswer": { "@type": "Answer", "text": "טיפול אורך כ־45 דקות, כולו מוקדש לכם בלבד. הפגישה הראשונה כוללת אבחון מקיף ועשויה להימשך מעט יותר." }
+      "acceptedAnswer": { "@type": "Answer", "text": "טיפול אורך כשעה, כולו מוקדש לכם בלבד. הפגישה הראשונה כוללת אבחון מקיף ועשויה להימשך מעט יותר." }
     },
     {
       "@type": "Question",
@@ -803,7 +803,7 @@
   .partners-head { text-align: center; margin-bottom: 26px; }
   .partners-head h3 { font-size: 1.45rem; font-weight: 900; }
   .partners-head p { color: var(--gray); font-size: .98rem; }
-  .partners-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 480px)); justify-content: center; gap: 26px; }
+  .partners-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); justify-content: center; gap: 22px; max-width: 1000px; margin: 0 auto; }
   .partner-card {
     background: linear-gradient(150deg, rgba(255,255,255,.72), rgba(255,255,255,.42));
     backdrop-filter: blur(18px) saturate(150%);
@@ -866,6 +866,11 @@
   .insoles-lead { font-size: 1.1rem; line-height: 1.7; color: var(--ink); font-weight: 600; margin-bottom: 20px; }
   .feature-list { list-style: none; margin: 6px 0 24px; display: grid; gap: 11px; }
   .feature-list li { padding-right: 34px; position: relative; font-weight: 600; font-size: .95rem; color: var(--ink); line-height: 1.6; }
+  .insole-type { margin-bottom: 22px; }
+  .insole-type:last-of-type { margin-bottom: 6px; }
+  .insole-type h3 { display: flex; align-items: center; gap: 9px; font-size: 1.12rem; font-weight: 900; color: var(--teal-deep); letter-spacing: -.01em; margin-bottom: 12px; }
+  .insole-type h3::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--teal-mid); flex-shrink: 0; }
+  .insole-type .feature-list { margin: 0; }
   .feature-list li::before {
     content: "\2713"; position: absolute; right: 0; top: 2px;
     width: 23px; height: 23px; border-radius: 50%;
@@ -1530,9 +1535,19 @@
   <div class="container partners">
     <div class="partners-head reveal">
       <h3>לא לבד — צוות של מומחיות</h3>
-      <p>פיזיושלי פועלת בשיתוף פעולה עם שתי פיזיותרפיסטיות מנוסות, כדי שתמיד תקבלו את הטיפול המתאים ביותר.</p>
+      <p>פיזיושלי פועלת בשיתוף פעולה עם מומחיות מנוסות מתחומים משלימים, כדי שתמיד תקבלו את הטיפול המתאים ביותר.</p>
     </div>
     <div class="partners-grid">
+      <article class="partner-card reveal">
+        <div class="partner-photo">
+          <span>ע</span>
+          <img src="assets/Omer.png" alt="עומר פינטו — אוסטאופתית" style="object-position: center 20%;" onerror="this.remove()">
+        </div>
+        <h4>עומר פינטו</h4>
+        <div class="partner-role">אוסטאופתית · מומחית לטיפול אוסטאופתי</div>
+        <p class="partner-bio">מאמינה ביכולת הגוף לרפא את עצמו, שהתנועה מרפאה, בעזרת עבודה קשובה ומדויקת ניתן לרפא את הכאב ולהיות בתנועה.</p>
+        <a class="partner-ig" href="https://www.instagram.com/omer_pinto_osteopathy" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ic-ig"/></svg>לאינסטגרם של עומר</a>
+      </article>
       <article class="partner-card reveal d1">
         <div class="partner-photo">
           <span>פ</span>
@@ -1571,16 +1586,27 @@
       </figure>
     </div>
     <div class="reveal">
-      <span class="sec-tag">אקטיקס מדיקל</span>
-      <h2 id="insoles-h">מדרסים בהתאמה אישית <span>לכף הרגל</span></h2>
-      <p class="insoles-lead">בקליניקה מתאימים מדרסי אקטיקס מדיקל בהתאמה אישית מלאה — מדרסים אורתופדיים בטכנולוגיה מתקדמת ומוגנת פטנט, המפזרים את העומס בצורה מדויקת ומחזירים אתכם לתנועה נטולת כאב.</p>
-      <ul class="feature-list">
-        <li>טכנולוגיה מוגנת פטנט עם עד 52 נקודות כיוונון להתאמה מדויקת.</li>
-        <li>פיזור עומסים אופטימלי — הקלה על כפות הרגליים, הברכיים, הירכיים והגב התחתון.</li>
-        <li>התאמה אישית במקום, כבר בביקור הראשון — מהיר, פשוט ויעיל.</li>
-        <li>ניתן להעביר את המדרס בקלות בין זוגות נעליים דומות.</li>
-        <li>מתאים לסוכרתיים, לספורטאים ולטיפול בדורבן — בחומרים מתקדמים ומומלצים.</li>
-      </ul>
+      <span class="sec-tag">מדרסים בהתאמה אישית</span>
+      <h2 id="insoles-h">שני סוגי מדרסים <span>בהתאמה אישית</span></h2>
+      <p class="insoles-lead">בקליניקה מתאימים מדרסים אורתופדיים בהתאמה אישית מלאה בשתי טכנולוגיות מתקדמות — לפיזור מדויק של העומס, להקלה על הכאב ולחזרה לתנועה חופשית.</p>
+      <div class="insole-type">
+        <h3>מדרסי אקטיקס מדיקל</h3>
+        <ul class="feature-list">
+          <li>טכנולוגיה מוגנת פטנט עם עד 52 נקודות כיוונון להתאמה מדויקת.</li>
+          <li>התאמה אישית במקום, כבר בביקור הראשון — מהיר, פשוט ויעיל.</li>
+          <li>ניתן להעביר את המדרס בקלות בין זוגות נעליים דומות.</li>
+          <li>מתאים לסוכרתיים, לספורטאים ולטיפול בדורבן — בחומרים מתקדמים ומומלצים.</li>
+        </ul>
+      </div>
+      <div class="insole-type">
+        <h3>מדרסי תלת־מימד (3D)</h3>
+        <ul class="feature-list">
+          <li>נבנים לאחר סריקה דיגיטלית ואבחון ביומכני של מנח כף הרגל והעומסים בזמן תנועה.</li>
+          <li>הדפסת תלת־מימד מאפשרת דרגות קשיחות משתנות — תמיכה מרבית באזורי הכאב לצד גמישות.</li>
+          <li>מספקים החזר אנרגטי ושיפור ביצועים, לצד הקלה על הברכיים, האגן והגב.</li>
+          <li>פתרון מדויק לכאבי גב, ברכיים, דורבן ופציעות ספורט — מותאם לגוף כולו, לא רק לכף הרגל.</li>
+        </ul>
+      </div>
       <div class="insoles-cta">
         <a class="btn btn-whatsapp" href="https://wa.me/972507767001?text=%D7%94%D7%99%D7%99%20%D7%A9%D7%9C%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%94%D7%AA%D7%90%D7%9E%D7%AA%20%D7%9E%D7%93%D7%A8%D7%A1%D7%99%D7%9D" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#ic-wa"/></svg>לתיאום התאמת מדרסים</a>
       </div>
@@ -1699,7 +1725,7 @@
     </div>
     <details class="reveal">
       <summary>כמה זמן נמשך כל טיפול?</summary>
-      <p>טיפול אורך כ־45 דקות, כולו מוקדש לכם בלבד. הפגישה הראשונה כוללת אבחון מקיף ועשויה להימשך מעט יותר.</p>
+      <p>טיפול אורך כשעה, כולו מוקדש לכם בלבד. הפגישה הראשונה כוללת אבחון מקיף ועשויה להימשך מעט יותר.</p>
     </details>
     <details class="reveal">
       <summary>כמה טיפולים אצטרך?</summary>
